@@ -13,7 +13,6 @@ import {
   Eye,
   User,
   ListVideo,
-  Zap,
   Lock,
   Crown,
 } from "lucide-react";
@@ -177,10 +176,7 @@ export default function DownloadForm() {
     <div className="space-y-8">
       {/* ── Hero ── */}
       <div className="flex flex-col items-center text-center space-y-4 pt-4 pb-2">
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm text-blue-700 font-medium">
-          <Zap className="h-3.5 w-3.5" />
-          Powered by yt-dlp
-        </div>
+
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
           Download YouTube Videos
         </h1>
