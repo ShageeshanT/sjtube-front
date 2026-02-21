@@ -23,42 +23,18 @@ export function usePlan(): PlanInfo {
   const { user } = useUser();
 
   return useMemo(() => {
-    const metadata = (user?.publicMetadata || {}) as Record<string, unknown>;
-    const rawPlan = metadata.plan as string | undefined;
-    const trialEnds = metadata.trial_ends as string | undefined;
+    // TODO: Re-enable plan checking from Clerk metadata when ready to enforce restrictions
+    // const metadata = (user?.publicMetadata || {}) as Record<string, unknown>;
+    // const rawPlan = metadata.plan as string | undefined;
+    // const trialEnds = metadata.trial_ends as string | undefined;
 
-    let plan: PlanType = "free";
-    let isTrial = false;
-    let trialEndsAt: Date | null = null;
-    let trialDaysLeft: number | null = null;
-
-    if (rawPlan === "pro") {
-      // Check if it's a trial with expiry
-      if (trialEnds) {
-        trialEndsAt = new Date(trialEnds);
-        const now = new Date();
-        const diffMs = trialEndsAt.getTime() - now.getTime();
-        trialDaysLeft = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
-
-        if (diffMs > 0) {
-          plan = "pro";
-          isTrial = true;
-        } else {
-          // Trial expired → back to free
-          plan = "free";
-          isTrial = false;
-        }
-      } else {
-        plan = "pro";
-      }
-    }
-
+    // For now, grant all users Pro access
     return {
-      plan,
-      isPro: plan === "pro",
-      isTrial,
-      trialEndsAt,
-      trialDaysLeft,
+      plan: "pro" as PlanType,
+      isPro: true,
+      isTrial: false,
+      trialEndsAt: null,
+      trialDaysLeft: null,
     };
   }, [user?.publicMetadata]);
 }

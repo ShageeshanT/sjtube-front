@@ -31,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           {/* Logo */}
           <Link to="/dashboard" className="flex items-center gap-2.5 group">
-            <img src="/logo.png" alt="SJ Tube" className="h-8 w-auto" />
+            <img src="/logo.svg" alt="SJ Tube" className="h-8 w-auto" />
           </Link>
 
           {/* Navigation */}

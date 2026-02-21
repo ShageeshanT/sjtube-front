@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import {
   Check,
   X,
@@ -6,7 +6,7 @@ import {
   Zap,
   Shield,
   Download,
-  Infinity,
+
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

@@ -1,6 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "@clerk/clerk-react";
 import { toast } from "sonner";
 import {
   Search,
@@ -25,7 +24,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 
-import { usePlan, isQualityLocked, PRO_QUALITIES } from "@/hooks/usePlan";
+import { usePlan, isQualityLocked } from "@/hooks/usePlan";
 import type { VideoInfo, TaskStatus } from "@/lib/api";
 import {
   validateUrl,
@@ -46,7 +45,6 @@ const QUALITY_OPTIONS = [
 ];
 
 export default function DownloadForm() {
-  const { getToken } = useAuth();
   const { isPro } = usePlan();
 
   const [url, setUrl] = useState("");

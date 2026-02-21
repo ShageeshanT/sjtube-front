@@ -5,7 +5,7 @@ export default function SignInPage() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-white">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <img src="/logo.png" alt="SJ Tube" className="mx-auto h-12 w-auto mb-4" />
+          <img src="/logo.svg" alt="SJ Tube" className="mx-auto h-12 w-auto mb-4" />
           <p className="text-sm text-slate-500">Sign in to start downloading</p>
         </div>
         <SignIn
