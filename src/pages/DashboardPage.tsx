@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { usePlan } from "@/hooks/usePlan";
 import type { HistoryItem } from "@/lib/api";
-import { getHistory, getDownloadUrl } from "@/lib/api";
+import { getHistory, saveFile } from "@/lib/api";
 
 export default function DashboardPage() {
   const { user } = useUser();
@@ -223,7 +223,7 @@ export default function DashboardPage() {
                         size="sm"
                         className="h-8 text-xs text-blue-600 hover:text-blue-700 hover:bg-blue-50"
                         onClick={() => {
-                          window.open(getDownloadUrl(item.filename), "_blank");
+                          saveFile(item.filename).catch(() => {});
                         }}
                       >
                         <Download className="h-3.5 w-3.5" />

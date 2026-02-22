@@ -16,7 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 import type { HistoryItem } from "@/lib/api";
-import { getHistory, deleteFile, getDownloadUrl } from "@/lib/api";
+import { getHistory, deleteFile, saveFile } from "@/lib/api";
 
 export default function HistoryPage() {
   const [items, setItems] = useState<HistoryItem[]>([]);
@@ -53,7 +53,7 @@ export default function HistoryPage() {
   };
 
   const handleDownload = (filename: string) => {
-    window.open(getDownloadUrl(filename), "_blank");
+    saveFile(filename).catch(() => {});
   };
 
   const getFileIcon = (filename: string) => {

@@ -29,7 +29,7 @@ import {
   validateUrl,
   startDownload,
   getTaskStatus,
-  getDownloadUrl,
+  saveFile,
 } from "@/lib/api";
 
 // All quality options with display labels
@@ -132,7 +132,7 @@ export default function DownloadForm() {
             toast.success("Download complete!", { duration: 5000 });
 
             if (status.filename) {
-              window.open(getDownloadUrl(status.filename), "_blank");
+              saveFile(status.filename).catch(() => {});
             }
           } else if (status.status === "error") {
             if (pollRef.current) clearInterval(pollRef.current);
@@ -436,7 +436,7 @@ export default function DownloadForm() {
               size="sm"
               className="gap-2 border-emerald-300 text-emerald-700 hover:bg-emerald-100"
               onClick={() => {
-                window.open(getDownloadUrl(taskStatus.filename!), "_blank");
+                saveFile(taskStatus.filename!).catch(() => {});
               }}
             >
               <Download className="h-3.5 w-3.5" />

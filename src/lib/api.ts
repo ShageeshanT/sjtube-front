@@ -108,3 +108,20 @@ export async function deleteFile(filename: string): Promise<void> {
 export function getDownloadUrl(filename: string): string {
   return `${API_BASE}/downloads/${encodeURIComponent(filename)}`;
 }
+
+/** Download a file from the backend and save it to the user's device.
+ *  Works cross-origin and from async callbacks (no popup blocker issues). */
+export async function saveFile(filename: string): Promise<void> {
+  const url = getDownloadUrl(filename);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Download failed: ${res.statusText}`);
+  const blob = await res.blob();
+  const blobUrl = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = blobUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(blobUrl);
+}
