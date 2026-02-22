@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
+import { toast } from "sonner";
 
 import {
   Download,
@@ -223,7 +224,9 @@ export default function DashboardPage() {
                         size="sm"
                         className="h-8 text-xs text-blue-600 hover:text-blue-700 hover:bg-blue-50"
                         onClick={() => {
-                          saveFile(item.filename).catch(() => {});
+                          saveFile(item.filename).catch((err) =>
+                            toast.error(`File save failed: ${err.message}`)
+                          );
                         }}
                       >
                         <Download className="h-3.5 w-3.5" />

@@ -132,7 +132,9 @@ export default function DownloadForm() {
             toast.success("Download complete!", { duration: 5000 });
 
             if (status.filename) {
-              saveFile(status.filename).catch(() => {});
+              saveFile(status.filename).catch((err) =>
+                toast.error(`File save failed: ${err.message}`)
+              );
             }
           } else if (status.status === "error") {
             if (pollRef.current) clearInterval(pollRef.current);
@@ -436,7 +438,9 @@ export default function DownloadForm() {
               size="sm"
               className="gap-2 border-emerald-300 text-emerald-700 hover:bg-emerald-100"
               onClick={() => {
-                saveFile(taskStatus.filename!).catch(() => {});
+                saveFile(taskStatus.filename!).catch((err) =>
+                  toast.error(`File save failed: ${err.message}`)
+                );
               }}
             >
               <Download className="h-3.5 w-3.5" />
