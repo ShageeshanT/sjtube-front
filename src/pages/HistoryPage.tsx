@@ -53,12 +53,7 @@ export default function HistoryPage() {
   };
 
   const handleDownload = (filename: string) => {
-    const link = document.createElement("a");
-    link.href = getDownloadUrl(filename);
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open(getDownloadUrl(filename), "_blank");
   };
 
   const getFileIcon = (filename: string) => {

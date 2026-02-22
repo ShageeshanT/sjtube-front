@@ -223,12 +223,7 @@ export default function DashboardPage() {
                         size="sm"
                         className="h-8 text-xs text-blue-600 hover:text-blue-700 hover:bg-blue-50"
                         onClick={() => {
-                          const link = document.createElement("a");
-                          link.href = getDownloadUrl(item.filename);
-                          link.download = item.filename;
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
+                          window.open(getDownloadUrl(item.filename), "_blank");
                         }}
                       >
                         <Download className="h-3.5 w-3.5" />
